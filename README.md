@@ -10,11 +10,7 @@
 
 5 - rails c
 
-6 - Building.importation < Execute the import script localized into the Building model
-
-7 - Person.importation
-
-8 - bundle exec rspec
+6 - bundle exec rspec
 
 # GEM USED
 - Activerecord-import < Boost the import

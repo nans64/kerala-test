@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-    RSpec.describe Building, type: :model do
+RSpec.describe Building, type: :model do
       before do
         CSV.open('public/buildings.csv', 'w') do |csv|
           csv << %w[reference address zip_code city country manager_name]
@@ -28,7 +28,7 @@ require 'rails_helper'
           csv << ['3', '40 Rue des Vinaigriers', '75011', 'Paris', 'France']
           csv << ['3', '40 Rue des Vinaigriers', '75011', 'Paris', 'France']
         end
-        Building.importation('tmp/buildings.csv')
+        Building.importation('public/buildings.csv')
       end
 
       describe 'Parse the database to check if CSV datas are into the Building table' do
