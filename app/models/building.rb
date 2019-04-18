@@ -23,19 +23,24 @@ class Building < ApplicationRecord
 
   private_class_method def self.update_value(kerala_app,old_app)
 
-    kerala_app.first.revisions.each do |previous_value|
-      update_manager(kerala_app,old_app)  unless previous_value.manager_name == old_app[5]
+    if kerala_app.first.revisions.count == 0 then
+      kerala_data = kerala_app
+    else
+      kerala_data = kerala_app.first.revisions
     end
-    update_main_database(kerala_app,old_app)
+
+    kerala_data.each do |previous_values|
+      changes = Hash.new
+      changes[:address] = old_app[1] 
+      changes[:zip_code] = old_app[2]
+      changes[:city] = old_app[3]
+      changes[:country] = old_app[4]
+      changes[:manager_name] = old_app[5] unless previous_values.manager_name == old_app[5]
+      update_main_database(kerala_app,changes)
+    end
   end
 
-  private_class_method def self.update_manager(kerala_app,old_app)
-    kerala_app.first.update(:manager_name => old_app[5])
-    return "Mise à jour du MANAGER_NAME pour la référence : #{old_app[0]}"
-  end
-
-  private_class_method def self.update_main_database(kerala_app,old_app)
-    kerala_app.first.update(:address => old_app[1], :zip_code => old_app[2], :city => old_app[3], :country => old_app[4])
-    return "Mise à jour des autres informations pour la référence : #{old_app[0]}"
+  private_class_method def self.update_main_database(kerala_app,changes)
+    kerala_app.first.update(changes)
   end
 end
