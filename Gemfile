@@ -32,9 +32,6 @@ gem 'jbuilder', '~> 2.5'
 gem "audited", "~> 4.7"
 # Import gem
 gem 'activerecord-import'
-# TEST FOR AUDITING
-gem 'paper_trail'
-
 ##############################
 
 
@@ -49,6 +46,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rspec-rails', '~> 3.8'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'table_print'
 
