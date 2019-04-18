@@ -1,17 +1,24 @@
 # How to execute the script
 
 1 - Clone the repo 
+
 2 - bundle install
+
 3 - rails db:create
+
 4 - rails db:migrate
+
 5 - rails c
+
 6 - Building.importation < Execute the import script localized into the Building model
+
 7 - Person.importation
+
 8 - bundle exec rspec
 
 # GEM USED
-Activerecord-import < Boost the import
-audited < Generate data log on the fly
+- Activerecord-import < Boost the import
+- Audited < Generate data log on the fly
 
 # Explanation
 
