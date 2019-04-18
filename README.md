@@ -8,9 +8,7 @@
 
 4 - rails db:migrate
 
-5 - rails c
-
-6 - bundle exec rspec
+5 - bundle exec rspec
 
 # GEM USED
 - Activerecord-import < Boost the import
@@ -32,6 +30,6 @@ I chose to divide the script into two part :
 
 # Version
 
-- Rails 5.2
-- Ruby 5.1
+- Rails 5.2.3
+- Ruby 2.5.1
 - SQLite
