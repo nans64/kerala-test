@@ -28,17 +28,18 @@ class Person < ApplicationRecord
     else
       kerala_data = kerala_app.first.revisions
     end
+    changes = Hash.new
 
     kerala_data.each do |previous_values|
-        changes = Hash.new
         changes[:firstname] = old_app[1] 
         changes[:lastname] = old_app[2]
         changes[:home_phone_number] = old_app[3] unless previous_values.home_phone_number == old_app[3]
         changes[:mobile_phone_number] = old_app[4] unless previous_values.mobile_phone_number == old_app[4]
         changes[:email] = old_app[5] unless previous_values.email.downcase == old_app[5].downcase
         changes[:address] = old_app[6] unless previous_values.address.downcase == old_app[6].downcase
-        update_main_database(kerala_app,changes)
         end
+        update_main_database(kerala_app,changes)
+
     end
 
     private_class_method def self.update_main_database(kerala_app,changes)

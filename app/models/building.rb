@@ -29,15 +29,17 @@ class Building < ApplicationRecord
       kerala_data = kerala_app.first.revisions
     end
 
+    changes = Hash.new
+
     kerala_data.each do |previous_values|
-      changes = Hash.new
       changes[:address] = old_app[1] 
       changes[:zip_code] = old_app[2]
       changes[:city] = old_app[3]
       changes[:country] = old_app[4]
       changes[:manager_name] = old_app[5] unless previous_values.manager_name == old_app[5]
-      update_main_database(kerala_app,changes)
+      
     end
+    update_main_database(kerala_app,changes)
   end
 
   private_class_method def self.update_main_database(kerala_app,changes)
