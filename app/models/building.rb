@@ -6,7 +6,7 @@ class Building < ApplicationRecord
   def self.importation
     buildings_import = []
 
-    CSV.foreach('public/buildings.csv', headers: true) do |old_app|
+    CSV.foreach('public/people.csv', headers: true) do |old_app|
     
       kerala_app = Building.where(:reference => old_app[0])   
       
@@ -15,10 +15,12 @@ class Building < ApplicationRecord
       else 
         update_value(kerala_app, old_app)
         puts "Fin de l'update des valeurs [REF : #{old_app[0]}]"
+        raise old_app[0] # Raise the reference old_app == raise result
       end
     end
-    Building.import buildings_import
+    Building.import buildings_import, batch_size: 1000
     puts "Nous avons ajouté #{buildings_import.count} lignes depuis notre fichier CSV"
+    raise buildings_import.count
   end 
 
   private_class_method def self.update_value(kerala_app,old_app)
@@ -26,9 +28,7 @@ class Building < ApplicationRecord
     kerala_app.first.revisions.each do |previous_value|
       update_manager(kerala_app,old_app)  unless previous_value.manager_name.downcase == old_app[5].downcase
     end
-    
     update_main_database(kerala_app,old_app)
-
   end
 
   private_class_method def self.update_manager(kerala_app,old_app)
