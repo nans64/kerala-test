@@ -15,13 +15,16 @@ audited < Generate data log on the fly
 
 # Explanation
 
-I used the gem activerecord-import to boost the initial import. It would have been faster to
-manage the data if reference was the incremental number for both app but it would have create
+I used the gem activerecord-import to boost the initial import. 
+
+It would have been faster to manage the data if reference was the incremental number for both app but it would have create
 conflicts when a new data is inserted from the OldApp and the KeralaApp at the same time.
 
 
 I chose to divide the script into two part :
+
 1 - Import the new value by checking if the reference exist already or not
+
 2 - Checking the duplicate data to make sure to import a new version of the data when it's required.
 
 # Version
