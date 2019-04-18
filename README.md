@@ -10,6 +10,12 @@
 
 5 - bundle exec rspec
 
+6 - rails c
+
+7 - Building.importation('public/buildings.csv')
+
+8 - Person.importation('public/people.csv')
+
 # GEM USED
 - Activerecord-import < Boost the import
 - Audited < Generate data log on the fly
